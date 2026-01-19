@@ -13,61 +13,40 @@ public class Num1966 {
         StringBuilder sb = new StringBuilder();
         int num = Integer.parseInt(st.nextToken());
 
-        for(int i=0;i<num;i++){
+        for (int i = 0; i < num; i++) {
             st = new StringTokenizer(br.readLine());
             int m = Integer.parseInt(st.nextToken());
             int n = Integer.parseInt(st.nextToken());
 
-            int result=0;
             Deque<Document> deque = new ArrayDeque<>();
             st = new StringTokenizer(br.readLine());
 
-
-            for(int t=0;t<m;t++){
-                deque.add(new Document(t,Integer.parseInt(st.nextToken())));
-                if(n==t){
-                    result = deque.peekLast().getPriority();
-                }
+            for (int t = 0; t < m; t++) {
+                int size = Integer.parseInt(st.nextToken());
+                deque.add(new Document(size, t));
             }
             int count = 0;
 
-            while(deque.size()!=result){
+            while (true) {
                 int max = 0;
                 int max_index = 0;
-                for(Document d:deque){
-                    if(d.priority>max){
+                for (Document d : deque) {
+                    if (d.priority > max) {
                         max = d.priority;
                         max_index = d.index;
                     }
                 }
 
-                int minus;
-                // 제일 큰 수가 뒤에 있을 때
-                if(max_index>deque.size()/2){
-                    minus = deque.size()-max_index;
-                    for(int t=0;t<minus;t++){
-                        deque.add(deque.removeFirst());
-                        count++;
-                    }
-                }
+                if (deque.peekFirst().getPriority() < max) {
+                    deque.add(deque.pollFirst());
+                } else {
+                    Document result= deque.pollFirst();
+                    count++;
 
-                // 제일 큰 수가 앞에 있을 때
-                else if(max_index<deque.size()/2){
-                    minus = deque.size()-max_index;
-                    for(int t=0;t<minus;t++){
-                        deque.add(deque.removeLast());
-                        count++;
+                    if (result.getIndex() == n) {
+                        break;
                     }
                 }
-                // 중앙에 있을 때
-                else{
-                    minus = deque.size()-1;
-                    for(int t=0;t<minus;t++){
-                        deque.add(deque.removeFirst());
-                        count++;
-                    }
-                }
-
             }
             sb.append(count).append("\n");
         }
@@ -83,8 +62,12 @@ public class Num1966 {
             this.priority = priority;
             this.index = index;
         }
+
         public int getPriority() {
             return priority;
+        }
+        public int  getIndex() {
+            return index;
         }
     }
 
