@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.StringTokenizer;
 
@@ -39,8 +38,9 @@ public class Num1966 {
 
                 if (deque.peekFirst().getPriority() < max) {
                     deque.add(deque.pollFirst());
-                } else {
-                    Document result= deque.pollFirst();
+                }
+                else {
+                    Document result = deque.pollFirst();
                     count++;
 
                     if (result.getIndex() == n) {
@@ -66,7 +66,8 @@ public class Num1966 {
         public int getPriority() {
             return priority;
         }
-        public int  getIndex() {
+
+        public int getIndex() {
             return index;
         }
     }
