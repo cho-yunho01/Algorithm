@@ -12,6 +12,7 @@ public class Num11365 {
             }
             StringBuilder sb = new StringBuilder(str);
             System.out.println(sb.reverse().toString());
+
         }
     }
 }
