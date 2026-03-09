@@ -15,6 +15,6 @@ public class Num10987 {
         }
 
         System.out.println(count);
-    }
+
     }
 }
